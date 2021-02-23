@@ -9,16 +9,10 @@ function App() {
 
   const [albums, setAlbums] = useState([])
 
-  // const [albums, setAlbums] = useState([
-  //   { name: "kitten1", image: "http://placekitten.com/200/200" },
-  //   { name: "kitten2", image: "http://placekitten.com/200/200" },
-  //   { name: "kitten3", image: "http://placekitten.com/200/200" }
-  // ])
-
   useEffect(() => {
     //Our use effect now is triggered only once we change anything 
     //cause we added [] (without [], it would be triggered in every component update)
-    db.collection('albums').onSnapshot((snapshot) => {
+    const unmount = db.collection('albums').onSnapshot((snapshot) => {
       const tempAlbums = []
       snapshot.forEach(doc => {
         //distructuring
@@ -28,19 +22,18 @@ function App() {
         });
       })
       setAlbums(tempAlbums)
+      tempAlbums.map((temp) => { console.log(temp) })
     })
+    return unmount
   }, [])
 
   return (
-    <div>
-      <Home />
+    <main>
       <Switch>
-
         <Route exact path="/" render={() => <Home albums={albums} />} />
         <Route path="/:album" component={Album} />
-
       </Switch>
-    </div>
+    </main>
 
   );
 }

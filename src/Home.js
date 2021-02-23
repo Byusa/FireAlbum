@@ -1,27 +1,48 @@
-import React, { useEffect, useState } from 'react'
-import { Switch, Route, Link } from 'react-router-dom';
+import React from 'react'
+import { Link } from 'react-router-dom';
 import NewAlbumForm from './NewAlbumForm'
-import NewPhoto from './NewPhoto'
+import styled from 'styled-components/macro';
+
+const Header = styled.div`
+position: absolute;
+width: 100%;
+height: 10%;
+left: 0%;
+top: 0%;
+
+background: red;
+border: 1px solid rgba(0, 0, 0, 0.3);
+box-sizing: border-box;
+text-align: center;
+align-items: center;
+`
 
 
-const Home = () => {
-    const [albums, setAlbums] = useState([])
+const Home = ({ albums }) => {
+
     return (
-        <div>
-            <section>
-                {
-                    albums.map(album => (
-                        <Link to={`/${album.id}`}>
-                            <aside>
-                                <img src={album.image} alt="album" />
-                                <h3> {album.name} </h3>
-                            </aside>
-                        </Link>
-                    ))
-                }
-            </section>
+        <div >
+            <Header>
+                <p>Photoducumentation Control Managment System</p>
+            </Header>
+            <body>
+                <section>
+                    {albums.map((album) => (
+                        <div>
+                            <Link to={`/${album.id}`}>
+                                <aside key={album.name} >
+                                    <img src={album.image ? album.image[0].url : ""} alt="album" />
+                                    <h3> {album.name} </h3>
+                                </aside>
+                            </Link>
+
+                        </div>
+                    ))}
+
+                </section>
+            </body>
             <footer>
-                <NewPhoto />
+                <NewAlbumForm />
             </footer>
         </div>
     )
