@@ -53,7 +53,7 @@ const NewAlbumForm = () => {
             console.log("aaaaaaaa", albumName)
             return
         }
-        db.collection("albums").doc(albumName).set({
+        db.collection("food").doc(albumName).set({
             name: albumName
         }).then(function () {
             console.log("dddddddddddd Document successfully written!");

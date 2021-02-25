@@ -12,7 +12,7 @@ function App() {
   useEffect(() => {
     //Our use effect now is triggered only once we change anything 
     //cause we added [] (without [], it would be triggered in every component update)
-    const unmount = db.collection('albums').onSnapshot((snapshot) => {
+    const unmount = db.collection('food').onSnapshot((snapshot) => {
       const tempAlbums = []
       snapshot.forEach(doc => {
         //distructuring

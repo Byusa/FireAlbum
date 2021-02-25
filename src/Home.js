@@ -23,16 +23,16 @@ const Home = ({ albums }) => {
     return (
         <div >
             <Header>
-                <p>Photoducumentation Control Managment System</p>
+                <p>Diet Photo Data Control Managment System</p>
             </Header>
             <body>
                 <section>
                     {albums.map((album) => (
                         <div>
                             <Link to={`/${album.id}`}>
-                                <aside key={album.name} >
-                                    <img src={album.image ? album.image[0].url : ""} alt="album" />
-                                    <h3> {album.name} </h3>
+                                <aside key={album.Food_Name} >
+                                    <img src={album.foodImageCollection ? album.foodImageCollection[0].url : ""} alt="album" />
+                                    <h3> {album.Food_Name} </h3>
                                 </aside>
                             </Link>
 
